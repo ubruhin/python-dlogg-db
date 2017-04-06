@@ -1,8 +1,8 @@
 python-dlogg-db
 ===============
 
-Python package to read data from a `Technische Alternative`_ `D-LOGG`_
-device (using `dlogg-driver`_) and upload it to a database.
+Unofficial python package to read data from a `Technische Alternative`_
+`D-LOGG`_ device (using `dlogg-driver`_) and upload it to a database.
 
 
 Installation
