@@ -22,12 +22,9 @@ Usage
   from dlogg_db import DLoggDbUpload
   
   with DLoggDevice("/dev/ttyUSB0") as device:
-      header = device.get_header()
-      data = device.fetch_data_range(header.start, header.get_sample_count())
-      device.fetch_end()
       with DLoggDbUpload('db-host', 3306, 'db-name', 'db-user', 'db-pw') as upload:
-              upload.create_tables()
-              upload.insert_data(data)
+          upload.update_tables_format()
+          upload.insert_current_data(device.get_current_data())
 
 
 .. _`Technische Alternative`: http://www.ta.co.at/
