@@ -29,7 +29,7 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
 
 setup(
     name='dlogg-db',
-    version='0.2.1',
+    version='0.3.0',
     description='Unofficial library to handle data from a Technische Alternative D-LOGG device.',
     long_description=long_description,
     url='https://github.com/ubruhin/python-dlogg-db',
