@@ -19,43 +19,20 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 from dlogg_driver import DLoggDevice
 from dlogg_driver.definitions import *
+from common import DLoggDbBase
 from binascii import hexlify
-import MySQLdb as mdb
 import time
 import logging
 
 log = logging.getLogger(__name__)
 
 
-class DLoggDbUpload(object):
+class DLoggDbUpload(DLoggDbBase):
 
     CURRENT_DB_FORMAT = 2
 
     def __init__(self, db_host, db_port, db_name, db_user, db_pw):
-        self._db = mdb.connect(host=db_host, port=db_port, user=db_user,
-                               passwd=db_pw, db=db_name, charset='utf8')
-        log.info("Opened database {} on host {}".format(db_name, db_host))
-        log.info("Database format version: {}".format(self.get_format_version()))
-
-    def __enter__(self):
-        return self
-
-    def __exit__(self, exc_type, exc_val, exc_tb):
-        self.close()
-
-    def close(self):
-        self._db.close()
-        log.info("Closed database")
-
-    def get_format_version(self):
-        with self._db:
-            cur = self._db.cursor()
-            cur.execute("SHOW TABLES LIKE 'internal'")
-            if cur.fetchone():
-                cur.execute("SELECT `value` FROM internal WHERE `key`='version'")
-                return int(cur.fetchone()[0])
-            else:
-                return 0
+        DLoggDbBase.__init__(self, db_host, db_port, db_name, db_user, db_pw)
 
     def update_tables_format(self):
         version = self.get_format_version()

@@ -44,5 +44,5 @@ setup(
     ],
     keywords='technische alternative, dlogg, d-logg, d logg',
     packages=['dlogg_db'],
-    install_requires=['dlogg-driver~=0.2.0', 'mysql-python'],
+    install_requires=['dlogg-driver~=0.2.0', 'mysql-python', 'pandas'],
 )
